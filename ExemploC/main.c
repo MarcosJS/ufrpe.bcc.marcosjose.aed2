@@ -15,6 +15,7 @@ int main()
 	adicionar(l, novo3);
 
 	print(l);
+	printf("Editado apartir do repositório");
 
 	apagar(l);
 	free(l);
