@@ -10,4 +10,4 @@ main.o:main.c
 	gcc -g -c main.c -o main.o
 
 clean:
-	rm -f avl saida.txt *.o
+	rm -f avl *.txt *.o
