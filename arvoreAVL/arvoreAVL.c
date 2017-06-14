@@ -111,7 +111,7 @@ no * inserirNo(no  * novoNo, no * raizArvore, no * pai) {
 		raizArvore = novoNo;
 		raizArvore->pai = pai;
 		
-		return raizArvore;
+		//return raizArvore;
 	} else {
 		
 		if(novoNo->chave < raizArvore->chave) {//Aqui aplica-se a recursividade se valor menor.
@@ -226,7 +226,7 @@ void carregarArvore(arvoreAVL * arv, char *nomeArq) {
 		no * novoNo;
 		novoNo = alocarNo(valor);
 		arv->raiz = inserirNo(novoNo, arv->raiz, NULL);
-		i++;
+		//i++;
 	}
 	fclose(arquivo);
 }

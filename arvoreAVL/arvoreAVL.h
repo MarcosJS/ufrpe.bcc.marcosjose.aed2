@@ -1,4 +1,4 @@
-#ifndef __ARBOREAVL_H__
+#ifndef __ARVOREAVL_H__
 #define __ARVOREAVL_H__
 
 #include <stdio.h>
