@@ -19,21 +19,55 @@ arvoreRN * alocarArvore() {
 	return arv;
 }
 
-/*Retorna o novo nó atual no memsmo nível do anterior*/
-no * rotacaoSimpleEsq(no * noAtual) {
+/*Retorna o novo nó atual para reparação que sobe até a raiz*/
+no * rotacaoSimplesEsq(no * noAtual) {
 	
-	noAtual->pai->esq = noAtual->dir;
-	noAtual->dir = noAtual->dir->esq;
-	pai->esq->esq = noAtual;
+	noAtual->pai->pai->esq = noAtual->pai->dir;
+	noAtual->pai->dir = noAtual->pai->pai;
+	noAtual->pai->pai = noAtual->pai->pai->pai;
+	noAtual->pai->dir->pai = noAtual->pai;
+	noAtual->pai->cor = 1;
+	noAtual->pai->dir->cor = 0;
 	
 	return noAtual->pai;
 }
 
+/*Retorna o resultado da chamada recursiva*/
 no * rotacaoDuplaDir(no * noAtual) {
 	
+	noAtual->pai->dir = noAtual->esq;
+	noAtual->esq = noAtual->pai;
+	noAtual->pai = noAtual->esq->pai;
+	noAtual->esq->pai = noAtual;
+	
+	return rotacaoSimplesEsq(noAtual->esq);
 	
 }
 
+/*Retorna o novo nó atual para reparação que sobe até a raiz(ROTAÇÃO INVERSA)*/
+no * rotacaoSimplesDir(no * noAtual) {
+	
+	noAtual->pai->pai->dir = noAtual->pai->esq;
+	noAtual->pai->esq = noAtual->pai->pai;
+	noAtual->pai->pai = noAtual->pai->pai->pai;
+	noAtual->pai->esq->pai = noAtual->pai;
+	noAtual->pai->cor = 1;
+	noAtual->pai->esq->cor = 0;
+	
+	return noAtual->pai;
+}
+
+/*Retorna o resultado da chamada recursiva (ROTAÇÃO INVERSA)*/
+no * rotacaoDuplaEsq(no * noAtual) {
+	
+	noAtual->pai->esq = noAtual->dir;
+	noAtual->dir = noAtual->pai;
+	noAtual->pai = noAtual->dir->pai;
+	noAtual->dir->pai = noAtual;
+	
+	return rotacaoSimplesEsq(noAtual->dir);
+	
+}
 void reparacaoArvoreRN(no * noAtual) {
 	
 	/*Avaliando se o novo nó é raiz para mudar a cor do nó*/
@@ -52,28 +86,31 @@ void reparacaoArvoreRN(no * noAtual) {
 				resultado = noAtual->pai->pai;
 				
 			/*Caso o no atual seja filho esquerdo*/	
-			} else if(noAtual->pai->dir = noAtual) {
+			} else if(noAtual->pai->pai->esq == noAtual->pai) {
 				
-				/*CASO 2: Filho (nó inserido) do mesmo lado do irmão que é preto*/
-				if(noAtual->dir = noInserido) {
-					/*ROTACAO DUPLA NO NÓ ATUAL AQUI!!!!!*/
-				/*CASO 3: Filho (nó inserido) do lado oposto do irmão que é preto*/
+				/*CASO 2: Nó vermelho do mesmo lado do tio que é preto e filho direito*/
+				if(noAtual->pai->dir == noAtual) {
+					/*ROTACAO DUPLA AQUI!!!!!*/
+					resultado = rotacaoDuplaDir(noAtual);
+					
+				/*CASO 3: Nó vermelho do lado oposto do tipo que é preto e filho direito*/
 				} else {
-					/*ROTACAO SIMPLES NO PAI ATUAL AQUI!!!!!*/
+					/*ROTACAO SIMPLES AQUI!!!!!*/
+					resultado = rotacaoSimplesEsq(noAtual);
 				}
 				
 			/*Caso o no atual seja filho direito*/
 			} else {
 				
-				/*CASO 2: Filho (nó inserido) do mesmo lado do irmão que é preto*/
-				if(noAtual->esq = noInserido) {
-				
-					/*ROTACAO DUPLA NO NÓ ATUAL AQUI!!!!!*/
+				/*CASO 2: Nó vermelho do mesmo lado do tio que é preto e filho esquerdo*/
+				if(noAtual->pai->esq == noAtual) {
+					/*ROTACAO DUPLA NO AQUI!!!!!*/
+					resultado = rotacaoDuplaEsq(noAtual);
 					
-				/*CASO 3: Filho (nó inserido) do lado oposto do irmão que é preto*/
+				/*CASO 3: Nó vermelho do lado oposto do tio que é preto e filho esquerdo*/
 				} else {
-				
-					/*ROTACAO SIMPLES NO PAI ATUAL AQUI!!!!!*/
+					/*ROTACAO SIMPLES AQUI!!!!!*/
+					resultado = rotacaoSimplesDir(noAtual);
 
 				}
 				
