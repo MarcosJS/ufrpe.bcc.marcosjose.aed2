@@ -65,7 +65,7 @@ no * rotacaoDuplaEsq(no * noAtual) {
 	noAtual->pai = noAtual->dir->pai;
 	noAtual->dir->pai = noAtual;
 	
-	return rotacaoSimplesDir(noAtual->dir);
+	return rotacaoSimplesDir(noAtual->esq);
 	
 }
 void reparacaoArvoreRN(no * noAtual) {
