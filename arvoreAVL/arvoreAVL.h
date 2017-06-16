@@ -22,7 +22,6 @@ int maior(int x, int y);
 int alturaNo(no * no);
 no * alocarNo(int valor);
 arvoreAVL * alocarArvore();
-int contarArvore(no * noRaiz);
 no * rotacaoDireta(no * noRaiz);
 no * rotacaoEsquerda(no * noRaiz);
 no * rotacaoDuplaDireita(no * noRAiz);
@@ -34,7 +33,6 @@ no * buscarElemento(no * noRaiz, int valor);
 no * sucessor(no * noRaiz);
 no * antecessor(no * noRaiz);
 void carregarArvore(arvoreAVL * arv, char *arquivo);
-void imprimirArvore(no * noRaiz);
 void imprimirArvoreArq(no * noRaiz, char *arquivo);
 void apagarArvore(no * noRaiz);
 

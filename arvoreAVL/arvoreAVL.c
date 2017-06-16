@@ -184,7 +184,7 @@ no * buscarElemento(no * noRaiz, int valor) {
 	}
 }
 
-/* Retorna o sucessor de um nó em uma arvore segundo um nó dado.*/
+/* Retorna o sucessor de um nó em uma arvore segundo um nó dado que exista na arvore.*/
 no * sucessor(no * x) {
 	if(x->dir != NULL) {
 		return menorElemento(x->dir);
@@ -220,36 +220,13 @@ void carregarArvore(arvoreAVL * arv, char *nomeArq) {
 	arquivo = fopen(nomeArq, "r");
 	char linha[10];
 	int valor;
-	int i = 0;
 	while(fgets(linha, 10, arquivo) != NULL) {
 		valor = atoi(linha);
 		no * novoNo;
 		novoNo = alocarNo(valor);
 		arv->raiz = inserirNo(novoNo, arv->raiz, NULL);
-		//i++;
 	}
 	fclose(arquivo);
-}
-/* Retorna o número de elementos de uma arvore.*/
-int contarArvore(no * noRaiz) {
-	int quantidade = 0;
-	if(noRaiz != NULL) {
-		quantidade++;
-		quantidade += contarArvore(noRaiz->esq);
-		quantidade += contarArvore(noRaiz->dir);		
-	}
-	return quantidade;
-}
-
-/* Imprimi a representação de uma arvore dada na saída padrão.*/
-void imprimirArvore(no * noRaiz) {
-	if(noRaiz != NULL) {
-		printf("( ");
-		printf("%d", noRaiz->chave);
-		imprimirArvore(noRaiz->esq);
-		imprimirArvore(noRaiz->dir);
-		printf(")");
-	}
 }
 
 /* Imprimi a representação de uma arvore em um arquivo.*/

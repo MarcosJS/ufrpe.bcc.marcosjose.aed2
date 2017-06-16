@@ -1,8 +1,8 @@
 #include "arvoreRN.h"
 
 //Função que cria um nó da arvore rubro Negra
-no * nonoNo(int valor) {
-	no * novo = (no*) malloc(siseof(no));
+no * alocarNo(int valor) {
+	no * novo = (no*) malloc(sizeof(no));
 	novo->chave = valor;
 	novo->cor = 0;//Todo nó a ser inserido é vermelho
 	novo->pai = NULL;
@@ -15,7 +15,8 @@ no * nonoNo(int valor) {
 //Função que cria uma estrutura que contém uma arvore rubro negra
 arvoreRN * alocarArvore() {
 	arvoreRN *arv = (arvoreRN*) malloc(sizeof(arvoreRN));
-
+	arv->raiz = NULL;
+	
 	return arv;
 }
 
@@ -143,4 +144,114 @@ void inserirNo(no * novoNo, no * raizArvore) {
 
 }
 
+/*Retorna um nó contendo o maior elemento da arvore*/
+no * maiorElemento(no * raizArvore) {
+	no * maior;
+	if(raizArvore->dir == NULL) {
+		maior = raizArvore;
+	} else {
+		maior = maiorElemento(raizArvore->dir);
+	}
+	
+	return maior;
+}
 
+/*Retorna um nó contendo o menor elemento da arvore*/
+no * menorElemento(no * raizArvore) {
+	no * menor;
+	if(raizArvore->esq == NULL) {
+		menor = raizArvore;
+		return menor;
+	} else {
+		menor = menorElemento(raizArvore->esq);
+	}
+}
+
+/*Retorna um nó contendo o elemento passado nos parametros, se houver*/
+no * BuscarElemento(no * raizArvore, int valor) {
+	no * resultado = NULL;	
+	if(raizArvore->chave == valor) {
+		resultado = raizArvore;
+	} else if(valor < raizArvore->chave) {
+		resultado =  buscarElemento(raizArvore->esq, valor);
+	} else {
+		resultado = buscarElemento(raizArvore->dir, valor);
+	}
+	return resultado;
+}
+
+/*Retorna o sucessor na arvore de um elemento dado que exista na arvore*/
+no * sucessor(no * x) {
+	if(x->dir != NULL) {
+		return menorElemento(x->dir);
+	} else {
+		while(x->pai != NULL) {
+			if(x == x->pai->esq) {			
+				return x->pai;
+			}
+			x = x->pai;
+		}
+	}
+	return NULL;
+}
+
+/*Retorna o antecessor na arvore de um elemento dado que exista na arvore*/
+no * antecessor(no * x) {
+	if(x->esq != NULL) {
+		return maiorElemento(x->esq);
+	} else {
+		while(x->pai != NULL) {
+			if(x == x->pai->dir) {			
+				return x->pai;
+			} 
+			x = x->pai;
+		}
+	}
+	return NULL;
+}
+
+/*Carrega um arvore apartir de um arquivo*/
+void carregarArvore(arvoreRN * arv, char * nomeArq) {
+	FILE *arquivo;
+	arquivo = fopen(nomeArq, "r");
+	char linha[10];
+	int valor;
+	while(fgets(linha, 10, arquivo) != NULL) {
+		valor = atoi(linha);
+		no * novoNo;
+		novoNo = alocarNo(valor);
+		arv->raiz = inserirNo(novoNo, arv->raiz);
+	}
+	fclose(arquivo);
+}
+
+/*Imprimi a representação de uma arvore em um arquivo*/
+void imprimirArvoreArq(no * raizArvore, char * nomeArq) {
+	FILE *arquivo;
+	if(noRaiz != NULL) {
+		arquivo = fopen(nomeArq, "a");
+		fprintf(arquivo, "( ");
+		fprintf(arquivo, "%d", raizArvore->chave);
+		if(raizArvore->cor == 0) {
+			fprintf(arquivo, "R");
+		} else {
+			fprintf(arquivo, "P");
+		}
+		fclose(arquivo);
+		imprimirArvoreArq(raizArvore->esq, nomeArq);
+		imprimirArvoreArq(raizArvore->dir, nomeArq);
+		arquivo = fopen(nomeArq, "a");
+		fprintf(arquivo, ")");
+		fclose(arquivo);
+	}
+}
+
+/*Libera a memoria utilizada para armazenar a arvore*/
+void apagarArvore(raizArvore) {
+	if(raizArvore != NULL) {
+		apagarArvore(raizArvore->esq);
+		apagarArvore(raizArvore->dir);
+		free(raizArvore);
+		raizArvore = NULL;
+	}
+}
