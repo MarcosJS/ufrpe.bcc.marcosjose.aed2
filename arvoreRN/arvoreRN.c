@@ -274,7 +274,7 @@ void imprimirArvoreArq(no * raizArvore, char * nomeArq) {
 	FILE *arquivo;
 	if(raizArvore != NULL) {
 		arquivo = fopen(nomeArq, "a");
-		fprintf(arquivo, "( ");
+		fprintf(arquivo, " (");
 		fprintf(arquivo, "%d", raizArvore->chave);
 		if(raizArvore->cor == 0) {
 			fprintf(arquivo, "R");
