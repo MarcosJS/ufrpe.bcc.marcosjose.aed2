@@ -12,11 +12,11 @@ int main(int argc, char * argv[]) {
 		case 2:
 			if(strcmp(argv[1], "-h") == 0) {
 				printf("-o <arquivo> 	:redireciona a saida para o ‘‘arquivo\n");
-				printf("-f <arquivo> 	:indica o ‘‘arquivo’’ que contém os dados a serem adicionados na AVL\n");
-				printf("-m 		:imprime o menor elemento da AVL\n");
-				printf("-M 		:imprime o maior elemento da AVL\n");
-				printf("-a <elemento> 	:imprime o antecessor na AVL do ‘‘elemento’’ ou caso contrário imprime -1\n");
-				printf("-s <elemento> 	:imprime o sucessor na AVL do ‘‘elemento’’ ou caso contrário imprime -1\n\n\n");
+				printf("-f <arquivo> 	:indica o ‘‘arquivo’’ que contém os dados a serem adicionados na Rubro Negra\n");
+				printf("-m 		:imprime o menor elemento da Rubro Negra\n");
+				printf("-M 		:imprime o maior elemento da Rubro Negra\n");
+				printf("-a <elemento> 	:imprime o antecessor na Rubro Negra do ‘‘elemento’’ ou caso contrário imprime -1\n");
+				printf("-s <elemento> 	:imprime o sucessor na Rubro Negra do ‘‘elemento’’ ou caso contrário imprime -1\n\n\n");
 				printf("Exemplos de uso:\n");
 				printf("$ ./rn -f arquivo-entrada.dat -o saida.dat\n");
 				printf("$ ./rn -f arquivo-entrada.dat -M\n");
@@ -29,23 +29,17 @@ int main(int argc, char * argv[]) {
 			}
 			getchar();
 			break;
-		/*case 3:
-			if(strcmp(argv[1], "-f") == 0) {
-				carregarArvore(arv, argv[2]);
-				imprimirArvore(arv->raiz);
-			} else {
-				printf("ERRO: Lista de parametros errada! Consulte a ajuda: '-h'");
-				erro = 1;	
-			}
-			getchar();	
-			break;*/
 		case 4:
 			carregarArvore(arv, argv[2]);
 			if((strcmp(argv[1], "-f") == 0) && (strcmp(argv[3], "-m") == 0)) {
 				no * menor;
 				menor = menorElemento(arv->raiz);
 				if(menor != NULL) {
-					printf("%d\n", menor->chave);
+					if(menor->cor == 1) {
+						printf("%dN\n", menor->chave);
+					} else {
+						printf("%dR\n", menor->chave);
+					}
 				} else {
 					printf("ERRO: A arvore está vazia! Indique um novo arquivo para alimentar a arvore");
 				}
@@ -53,7 +47,11 @@ int main(int argc, char * argv[]) {
 				no * maior;
 				maior = maiorElemento(arv->raiz);
 				if(maior != NULL) {
-					printf("%d\n", maior->chave);
+					if(maior->cor == 1) {
+						printf("%dN\n", maior->chave);
+					} else {
+						printf("%dR\n", maior->chave);
+					}
 				} else {
 					printf("ERRO: A arvore está vazia! Indique um novo arquivo para alimentar a arvore");
 				}
@@ -72,7 +70,11 @@ int main(int argc, char * argv[]) {
 				no * anter;
 				anter = antecessor(buscarElemento(arv->raiz, atoi(argv[4])));
 				if(anter != NULL) {
-					printf("%d\n", anter->chave);
+					if(anter->cor == 1) {
+						printf("%dN\n", anter->chave);
+					} else {
+						printf("%dR\n", anter->chave);
+					}
 				} else {
 					printf("ERRO: O elemento informado não existe na arvore! Tente novamente.");
 				}
@@ -80,7 +82,11 @@ int main(int argc, char * argv[]) {
 				no * suces;
 				suces = sucessor(buscarElemento(arv->raiz, atoi(argv[4])));
 				if(suces != NULL) {
-					printf("%d\n", suces->chave);
+					if(suces->cor == 1) {
+						printf("%dN\n", suces->chave);
+					} else {
+						printf("%dR\n", suces->chave);
+					}
 				} else {
 					printf("ERRO: O elemento informado não existe na arvore! Tente novamente.");
 				}
@@ -95,17 +101,10 @@ int main(int argc, char * argv[]) {
 			erro = 1;
 			getchar();
 	}
-	/*printf("argc: %d\n", argc);
-	printf("argc: %s\n", argv[0]);
-	printf("argc: %s\n", argv[1]);
-	printf("argc: %s\n", argv[2]);
-	printf("argc: %s\n", argv[3]);
-	printf("argc: %s\n", argv[4]);
-	getchar();*/
+	
 	system("clear");
 
-	apagarArvore(arv->raiz);
-	free(arv);
+	apagarArvore(arv);
 	
 	return erro;
 }

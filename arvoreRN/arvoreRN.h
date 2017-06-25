@@ -6,8 +6,8 @@
 #include <time.h>
 #include <string.h>
 
-#define PRETO 1
-#define VERMELHO 0
+#define NEGRO 1
+#define RUBRO 0
 
 //As core serão representas pelos inteiro 0 para vermelho e 1 para preto na variavel cor
 typedef struct No {
@@ -38,6 +38,7 @@ no * sucessor(no * x);
 no * antecessor(no * x);
 void carregarArvore(arvoreRN * arv, char * nomeArq);
 void imprimirArvoreArq(no * raizArvore, char * nomeArq);
-void apagarArvore(no * raizArvore);
+void apagarNo(no * raizArvore);
+void apagarArvore(arvoreRN * arv);
 
 #endif
