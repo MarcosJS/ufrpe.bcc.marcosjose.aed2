@@ -29,6 +29,16 @@ int main(int argc, char * argv[]) {
 			}
 			getchar();
 			break;
+		case 3:
+			if(strcmp(argv[1], "-f") == 0) {
+				carregarArvore(arv, argv[2]);
+				imprimirArvore(arv->raiz);
+			} else {
+				printf("ERRO: Lista de parametros errada! Consulte a ajuda: '-h'");
+				erro = 1;	
+			}
+			getchar();	
+			break;
 		case 4:
 			carregarArvore(arv, argv[2]);
 			if((strcmp(argv[1], "-f") == 0) && (strcmp(argv[3], "-m") == 0)) {

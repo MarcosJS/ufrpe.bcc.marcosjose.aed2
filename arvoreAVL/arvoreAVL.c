@@ -228,6 +228,7 @@ void carregarArvore(arvoreAVL * arv, char *nomeArq) {
 	}
 	fclose(arquivo);
 }
+
 /* Imprimi a representação de uma arvore.*/
 void imprimirArvore(no * noRaiz) {
 	if(noRaiz != NULL) {
