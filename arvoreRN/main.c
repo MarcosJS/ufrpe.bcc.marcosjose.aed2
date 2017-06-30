@@ -17,12 +17,11 @@ int main(int argc, char * argv[]) {
 				printf("-M 		:imprime o maior elemento da Rubro Negra\n");
 				printf("-a <elemento> 	:imprime o antecessor na Rubro Negra do ‘‘elemento’’ ou caso contrário imprime -1\n");
 				printf("-s <elemento> 	:imprime o sucessor na Rubro Negra do ‘‘elemento’’ ou caso contrário imprime -1\n\n\n");
-				printf("Exemplos de uso:\n");
-				printf("$ ./rn -f arquivo-entrada.dat -o saida.dat\n");
-				printf("$ ./rn -f arquivo-entrada.dat -M\n");
-				printf("256\n");
-				printf("$ ./rn -f arquivo-entrada.dat -a 25\n");
-				printf("10\n");
+				printf("ATENÇÃO: A ordem dos parametro deve ser exatamento igual ao demonstrado abaixo.\n\n\n");
+				printf("\t'$ ./rn -f arquivo-entrada.dat -o saida.dat' - imprimi representacao em arquivo.\n");
+				printf("\t'$ ./rn -f arquivo-entrada.dat -o saida.dat' - imprimi representacao da arvore na tela.\n");
+				printf("\t'$ ./rn -f arquivo-entrada.dat -M (ou 'm')' - imprimi na tela o maior ou menor elemento\n");
+				printf("\t'$ ./rn -f arquivo-entrada.dat -a (ou 's') 25' - imprimi na tela o antecessor ou sucessor, se houver do valor fornecido.\n");
 			} else {
 				printf("ERRO: Lista de parametros errada! Consulte a ajuda: '-h'");
 				erro = 1;
