@@ -228,6 +228,16 @@ void carregarArvore(arvoreAVL * arv, char *nomeArq) {
 	}
 	fclose(arquivo);
 }
+/* Imprimi a representação de uma arvore.*/
+void imprimirArvore(no * noRaiz) {
+	if(noRaiz != NULL) {
+		printf(" (");
+		printf("%d", noRaiz->chave);
+		imprimirArvore(noRaiz->esq);
+		imprimirArvore(noRaiz->dir);
+		printf(")");
+	}
+}
 
 /* Imprimi a representação de uma arvore em um arquivo.*/
 void imprimirArvoreArq(no * noRaiz, char *nomeArq) {

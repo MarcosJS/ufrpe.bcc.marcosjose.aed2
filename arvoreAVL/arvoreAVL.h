@@ -33,6 +33,7 @@ no * buscarElemento(no * noRaiz, int valor);
 no * sucessor(no * noRaiz);
 no * antecessor(no * noRaiz);
 void carregarArvore(arvoreAVL * arv, char *arquivo);
+void imprimirArvore(no * noRaiz);
 void imprimirArvoreArq(no * noRaiz, char *arquivo);
 void apagarArvore(no * noRaiz);
 
