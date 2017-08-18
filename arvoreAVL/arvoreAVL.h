@@ -36,5 +36,6 @@ void carregarArvore(arvoreAVL * arv, char *arquivo);
 void imprimirArvore(no * noRaiz);
 void imprimirArvoreArq(no * noRaiz, char *arquivo);
 void apagarArvore(no * noRaiz);
+void imprimirNo(no * no);
 
 #endif // __ARVOREAVL_H__

@@ -41,5 +41,6 @@ void imprimirArvore(no * noRaiz);
 void imprimirArvoreArq(no * raizArvore, char * nomeArq);
 void apagarNo(no * raizArvore);
 void apagarArvore(arvoreRN * arv);
+void imprimirNo(no * no);
 
 #endif

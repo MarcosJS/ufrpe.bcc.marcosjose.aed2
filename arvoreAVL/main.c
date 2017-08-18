@@ -11,8 +11,6 @@ int main(int argc, char * argv[]) {
 
 	system("clear");
 	
-	printf("\t%c\n", op.flag);
-
 	if(op.flag == '*') {
 	
 		printf("ERRO: Lista de parametros errada! Consulte a ajuda: '-h'");
@@ -23,7 +21,7 @@ int main(int argc, char * argv[]) {
 		switch(op.flag) {
 			case 'h':
 				printf("-o <arquivo> 	:redireciona a saida para o ‘‘arquivo\n");
-				printf("-f <arquivo> 	:indica o ‘‘arquivo’’ que contém os dados a serem adicionados na AVL\n");
+				printf("-f <arquivo> 	:indica o ‘‘arquivo’’ que contém os dados a serem adicionados na Arvore\n");
 				printf("-m 		:imprime o menor elemento da AVL\n");
 				printf("-M 		:imprime o maior elemento da AVL\n");
 				printf("-a <elemento> 	:imprime o antecessor na AVL do ‘‘elemento’’ ou caso contrário imprime -1\n");
@@ -44,14 +42,14 @@ int main(int argc, char * argv[]) {
 				carregarArvore(arv, op.argumento[op.posicaoEntrada]);
 				no * menor;
 				menor = menorElemento(arv->raiz);
-				printf("%d\n", menor->chave);
+				imprimirNo(menor);
 				getchar();
 				break;
 			case 'M':
 				carregarArvore(arv, op.argumento[op.posicaoEntrada]);
 				no * maior;
 				maior = maiorElemento(arv->raiz);
-				printf("%d\n", maior->chave);
+				imprimirNo(maior);
 				getchar();
 				break;
 			case 'o':
@@ -64,14 +62,14 @@ int main(int argc, char * argv[]) {
 				carregarArvore(arv, op.argumento[op.posicaoEntrada]);
 				no * anter;
 				anter = antecessor(buscarElemento(arv->raiz, atoi(op.argumento[op.posicao])));
-				printf("%d\n", anter->chave);
+				imprimirNo(anter);
 				getchar();
 				break;
 			case 's':
 				carregarArvore(arv, op.argumento[op.posicaoEntrada]);
 				no * suces;
 				suces = sucessor(buscarElemento(arv->raiz, atoi(op.argumento[op.posicao])));
-				printf("%d\n", suces->chave);
+				imprimirNo(suces);
 				getchar();
 				break;
 			default:

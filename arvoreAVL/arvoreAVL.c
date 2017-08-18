@@ -265,3 +265,11 @@ void apagarArvore(no * noRaiz) {
 		noRaiz = NULL;
 	}
 }
+
+void imprimirNo(no * no) {
+	if(no != NULL) {
+		printf("%d\n", no->chave);
+	} else {
+		printf("ERRO: O elemento informado não existe na arvore! Tente novamente.");
+	}
+}
