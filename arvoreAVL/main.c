@@ -1,90 +1,86 @@
 #include "arvoreAVL.h"
+#include "argumento.h"
 
 int main(int argc, char * argv[]) {
-
+	
+	opcoes op = leArgumentos(argc, argv);
+	
 	int erro = 0;
 
 	arvoreAVL * arv = alocarArvore();	
 
 	system("clear");
+	
+	printf("\t%c\n", op.flag);
 
-	switch(argc) {
-		case 2:
-			if(strcmp(argv[1], "-h") == 0) {
+	if(op.flag == '*') {
+	
+		printf("ERRO: Lista de parametros errada! Consulte a ajuda: '-h'");
+		erro = 1;
+		
+	} else {
+	
+		switch(op.flag) {
+			case 'h':
 				printf("-o <arquivo> 	:redireciona a saida para o ‘‘arquivo\n");
 				printf("-f <arquivo> 	:indica o ‘‘arquivo’’ que contém os dados a serem adicionados na AVL\n");
 				printf("-m 		:imprime o menor elemento da AVL\n");
 				printf("-M 		:imprime o maior elemento da AVL\n");
 				printf("-a <elemento> 	:imprime o antecessor na AVL do ‘‘elemento’’ ou caso contrário imprime -1\n");
 				printf("-s <elemento> 	:imprime o sucessor na AVL do ‘‘elemento’’ ou caso contrário imprime -1\n\n\n");
-				printf("ATENÇÃO: A ordem dos parametro deve ser exatamento igual ao demonstrado abaixo.\n\n\n");
+				printf("ATENÇÃO: Persistindo o erro tente seguir a ordem demonstrada abaixo.\n\n\n");
 				printf("\t'$ ./rn -f arquivo-entrada.dat -o saida.dat' - imprimi representacao em arquivo.\n");
 				printf("\t'$ ./rn -f arquivo-entrada.dat -o saida.dat' - imprimi representacao da arvore na tela.\n");
 				printf("\t'$ ./rn -f arquivo-entrada.dat -M (ou 'm')' - imprimi na tela o maior ou menor elemento\n");
 				printf("\t'$ ./rn -f arquivo-entrada.dat -a (ou 's') 25' - imprimi na tela o antecessor ou sucessor, se houver do valor fornecido.\n");
-			} else {
-				printf("ERRO: Lista de parametros errada! Consulte a ajuda: '-h'");
-				erro = 1;
-			}
-			getchar();
-			break;
-		case 3:
-			if(strcmp(argv[1], "-f") == 0) {
-				carregarArvore(arv, argv[2]);
+				getchar();
+				break;
+			case 'f':
+				carregarArvore(arv, op.argumento[op.posicao]);
 				imprimirArvore(arv->raiz);
-			} else {
-				printf("ERRO: Lista de parametros errada! Consulte a ajuda: '-h'");
-				erro = 1;	
-			}
-			getchar();	
-			break;
-		case 4:
-			carregarArvore(arv, argv[2]);
-			if((strcmp(argv[1], "-f") == 0) && (strcmp(argv[3], "-m") == 0)) {
+				getchar();	
+				break;
+			case 'm':
+				carregarArvore(arv, op.argumento[op.posicaoEntrada]);
 				no * menor;
 				menor = menorElemento(arv->raiz);
 				printf("%d\n", menor->chave);
-			} else if((strcmp(argv[1], "-f") == 0) && (strcmp(argv[3], "-M") == 0)) {
+				getchar();
+				break;
+			case 'M':
+				carregarArvore(arv, op.argumento[op.posicaoEntrada]);
 				no * maior;
 				maior = maiorElemento(arv->raiz);
 				printf("%d\n", maior->chave);
-			} else {
-				printf("ERRO: Lista de parametros errada! Consulte a ajuda: '-h'");
-				erro = 1;
-			}
-			getchar();
-			break;
-		case 5:
-			carregarArvore(arv, argv[2]);
-			no * temp;
-			if((strcmp(argv[1], "-f") == 0) && (strcmp(argv[3], "-o") == 0)) {
-				imprimirArvoreArq(arv->raiz, argv[4]);
-			} else if((strcmp(argv[1], "-f") == 0) && (strcmp(argv[3], "-a") == 0)) {
+				getchar();
+				break;
+			case 'o':
+				carregarArvore(arv, op.argumento[op.posicaoEntrada]);
+				no * temp;
+				imprimirArvoreArq(arv->raiz, op.argumento[op.posicao]);
+				getchar();
+				break;
+			case 'a':
+				carregarArvore(arv, op.argumento[op.posicaoEntrada]);
 				no * anter;
-				anter = antecessor(buscarElemento(arv->raiz, atoi(argv[4])));
+				anter = antecessor(buscarElemento(arv->raiz, atoi(op.argumento[op.posicao])));
 				printf("%d\n", anter->chave);
-			} else if((strcmp(argv[1], "-f") == 0) && (strcmp(argv[3], "-s") == 0)) {
+				getchar();
+				break;
+			case 's':
+				carregarArvore(arv, op.argumento[op.posicaoEntrada]);
 				no * suces;
-				suces = sucessor(buscarElemento(arv->raiz, atoi(argv[4])));
+				suces = sucessor(buscarElemento(arv->raiz, atoi(op.argumento[op.posicao])));
 				printf("%d\n", suces->chave);
-			} else {
-				printf("ERRO: Lista de parametros errada! Consulte a ajuda: '-h'");
+				getchar();
+				break;
+			default:
+				printf("ERRO: parâmetros conflitantes ou faltosos! Consulte a ajuda: '-h'");
 				erro = 1;
-			}
-			getchar();
-			break;
-		default:
-			printf("ERRO: parâmetros conflitantes ou faltosos! Consulte a ajuda: '-h'");
-			erro = 1;
-			getchar();
+				getchar();
+		}
 	}
-	/*printf("argc: %d\n", argc);
-	printf("argc: %s\n", argv[0]);
-	printf("argc: %s\n", argv[1]);
-	printf("argc: %s\n", argv[2]);
-	printf("argc: %s\n", argv[3]);
-	printf("argc: %s\n", argv[4]);
-	getchar();*/
+
 	system("clear");
 
 	apagarArvore(arv->raiz);
