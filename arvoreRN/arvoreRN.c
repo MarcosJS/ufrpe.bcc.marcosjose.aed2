@@ -332,6 +332,6 @@ void imprimirNo(no * no) {
 			printf("%dR\n", no->chave);
 		}
 	}else {
-					printf("ERRO: O elemento informado não existe na arvore! Tente novamente.");
+		printf("ERRO: O elemento informado não existe na arvore! Tente novamente.");
 	}
 }

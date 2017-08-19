@@ -21,9 +21,12 @@ int main(int argc, char * argv[]) {
 		switch(op.flag) {
 			case 'h':
 				printf("-o <arquivo> 	:redireciona a saida para o ‘‘arquivo\n");
-				printf("-f <arquivo> 	:indica o ‘‘arquivo’’ que contém os dados a serem adicionados na arvore\n");			printf("-m 		:imprime o menor elemento da Rubro Negra\n");
+				printf("-f <arquivo> 	:indica o ‘‘arquivo’’ que contém os dados a serem adicionados na arvore\n");
+				printf("-m 		:imprime o menor elemento da Rubro Negra\n");
 				printf("-M 		:imprime o maior elemento da Rubro Negra\n");
-				printf("-a <elemento> 	:imprime o antecessor na Rubro Negra do ‘‘elemento’’ ou caso contrário imprime -1\n");			printf("-s <elemento> 	:imprime o sucessor na Rubro Negra do ‘‘elemento’’ ou caso contrário imprime -1\n\n\n");			printf("ATENÇÃO: Persistindo o erro tente seguir a ordem demonstrada abaixo.\n\n\n");
+				printf("-a <elemento> 	:imprime o antecessor na Rubro Negra do ‘‘elemento’’ ou caso contrário imprime -1\n");
+				printf("-s <elemento> 	:imprime o sucessor na Rubro Negra do ‘‘elemento’’ ou caso contrário imprime -1\n\n\n");
+				printf("ATENÇÃO: Persistindo o erro tente seguir a ordem demonstrada abaixo.\n\n\n");
 				printf("\t'$ ./rn -f arquivo-entrada.dat -o saida.dat' - imprimi representacao em arquivo.\n");
 				printf("\t'$ ./rn -f arquivo-entrada.dat -o saida.dat' - imprimi representacao da arvore na tela.\n");
 				printf("\t'$ ./rn -f arquivo-entrada.dat -M (ou 'm')' - imprimi na tela o maior ou menor elemento\n");

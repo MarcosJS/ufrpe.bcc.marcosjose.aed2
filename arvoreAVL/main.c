@@ -4,11 +4,8 @@
 int main(int argc, char * argv[]) {
 	
 	opcoes op = leArgumentos(argc, argv);
-	
 	int erro = 0;
-
 	arvoreAVL * arv = alocarArvore();	
-
 	system("clear");
 	
 	if(op.flag == '*') {
