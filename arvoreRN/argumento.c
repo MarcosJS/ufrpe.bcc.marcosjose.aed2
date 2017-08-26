@@ -30,6 +30,7 @@ opcoes leArgumentos(int argc, char * argv[]) {
 							op.qArgumento++;
 							op.posicao = op.qOpcao;
 						}
+						break;
 					case 'm':
 						if(op.flag == '*') {
 							op.flag = 'm';
@@ -37,31 +38,37 @@ opcoes leArgumentos(int argc, char * argv[]) {
 							op.qArgumento++;
 							op.posicao = op.qOpcao;
 						}
+						break;
 					case 'h':
 						if(op.flag == '*') {
 							op.flag = 'h';
 							op.posicao = op.qOpcao;
 						}
+						break;
 					case 'o':
 						if(op.flag == '*') {
 							op.flag = 'o';
 							op.posicao = op.qOpcao;
 						}
+						break;
 					case 'a':
 						if(op.flag == '*') {
 							op.flag = 'a';
 							op.posicao = op.qOpcao;
 						}
+						break;
 					case 's':
 						if(op.flag == '*') {
 							op.flag = 's';
 							op.posicao = op.qOpcao;
 						}
+						break;
 					case 'f':
 						if(entrada == '*') {
 							entrada = 'f';
 							op.posicaoEntrada = op.qOpcao;
 						}
+						break;
 				}
 				
 				op.qOpcao++;

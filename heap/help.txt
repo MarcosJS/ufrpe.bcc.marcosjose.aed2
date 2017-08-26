@@ -1,0 +1,19 @@
+							
+							-------- Guia de ajuda do Heap ----------
+	 ----------------------------------------------------------------------------------------------
+	|                                                                                              |
+	|                                                             							|
+	|                                                        							     |
+	|* -h			:mostra o help													|
+	|* -o <arquivo>	:redireciona a saida para o ‘‘arquivo’’								|
+     |* -f <arquivo>	:indica o ‘‘arquivo’’ que contém os dados a serem adicionados na Heap		|
+     |* -m			:indica que a estrutura será uma heap mínima							|
+	|                                                             							|
+	|ATENÇÃO: Persistindo o erro tente seguir a ordem demonstrada abaixo.						|
+	|																			|
+	|'$ ./rn -f arquivo-entrada.dat -o saida.dat' - imprimi representacao em arquivo.			|
+	|'$ ./rn -f arquivo-entrada.dat -o saida.dat' - imprimi representacao da arvore na tela.		|
+	|'$ ./rn -f arquivo-entrada.dat -M (ou 'm')' - imprimi na tela o maior ou menor elemento.		|
+	|'$ ./rn -f arquivo-entrada.dat -a (ou 's') 25' - imprimi na tela o antecessor ou sucessor, 	|
+	|se houver do valor fornecido.            											|
+	 ----------------------------------------------------------------------------------------------

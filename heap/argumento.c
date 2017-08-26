@@ -8,6 +8,7 @@ opcoes leArgumentos(int argc, char * argv[]) {
 	op.flag = '*';
 	op.posicao = -1;
 	op.posicaoEntrada;
+	op.minimo = 0;
 	
 	int i;
 	
@@ -23,43 +24,23 @@ opcoes leArgumentos(int argc, char * argv[]) {
 				char parametro = argv[i + 1][j + 1];
 				
 				switch(parametro) {
-					case 'M':
-						if(op.flag == '*') {
-							op.flag = 'M';
-							op.argumento[op.qArgumento] = "{*}";
-							op.qArgumento++;
-							op.posicao = op.qOpcao;
-						}
-						break;
 					case 'm':
-						if(op.flag == '*') {
-							op.flag = 'm';
+						if(op.minimo == 0) {
+							op.minimo = 1;
 							op.argumento[op.qArgumento] = "{*}";
 							op.qArgumento++;
-							op.posicao = op.qOpcao;
 						}
 						break;
 					case 'h':
 						if(op.flag == '*') {
 							op.flag = 'h';
 							op.posicao = op.qOpcao;
+							getchar();
 						}
 						break;
 					case 'o':
 						if(op.flag == '*') {
 							op.flag = 'o';
-							op.posicao = op.qOpcao;
-						}
-						break;
-					case 'a':
-						if(op.flag == '*') {
-							op.flag = 'a';
-							op.posicao = op.qOpcao;
-						}
-						break;
-					case 's':
-						if(op.flag == '*') {
-							op.flag = 's';
 							op.posicao = op.qOpcao;
 						}
 						break;
@@ -73,7 +54,7 @@ opcoes leArgumentos(int argc, char * argv[]) {
 				
 				op.qOpcao++;
 				j++;
-				}
+			}
 				
 			} else {
 			op.argumento[op.qArgumento] = argv[i + 1];
@@ -82,7 +63,6 @@ opcoes leArgumentos(int argc, char * argv[]) {
 		}
 		
 		if(op.flag == '*') {
-			getchar();
 			op.flag = entrada;
 			op.posicao = op.posicaoEntrada;
 		} 
